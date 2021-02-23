@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istio-root
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: argocd
+    server: kubernetes.default.svc
+  project: experiments
+  source:
+    path: istio-install
+    repoURL: git@github.com:samof76/argocd-experiments.git
+    targetRevision: argocd
